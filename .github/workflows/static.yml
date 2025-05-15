@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safer Sex for Sex Workers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #c8102e;
+      color: white;
+      padding: 2em;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 0.2em;
+    }
+    h2 {
+      margin-top: 0;
+      font-weight: normal;
+    }
+    main {
+      padding: 2em;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 2em;
+    }
+    a {
+      color: #c8102e;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 1em;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Safer Sex for Sex Workers</h1>
+    <h2>Your Sexual Health</h2>
+  </header>
+  <main>
+    <section>
+      <h3>What are STIs and BBVs?</h3>
+      <p>Sex workers use vaccination, safer-sex tools (PPE), and testing as safer sex measures to protect against STIs and BBVs, and to maintain sexual health. Learn more: <a href="https://redbook.scarletalliance.org.au/sti-bbv/" target="_blank">Red Book STI/BBV</a>.</p>
+    </section>
+
+    <section>
+      <h3>How to Check Clients for Visible Signs of STI</h3>
+      <p>You can’t tell just by looking if someone has an STI or BBV, but knowing the signs and symptoms can help. Use gloves and ensure your client has showered before checking their genitals and mouth. Info: <a href="https://redbook.scarletalliance.org.au/checking-clients/" target="_blank">Red Book Guide</a>.</p>
+    </section>
+
+    <section>
+      <h3>Safer Sex Tools</h3>
+      <p>Safer sex tools include condoms (internal and external), gloves, and dams. More at: <a href="https://redbook.scarletalliance.org.au/safer-sex-tools/" target="_blank">Red Book Tools</a>.</p>
+    </section>
+
+    <section>
+      <h3>Free or Low-Cost PPE</h3>
+      <p>Get free or low-cost PPE at NSW Sexual Health Clinics and SWOP. No method is perfect—vaccination and regular testing are also important. More info:
+        <ul>
+          <li><a href="https://redbook.scarletalliance.org.au/sexual-health-clinics/" target="_blank">Red Book Clinic Info</a></li>
+          <li><a href="https://www.health.nsw.gov.au/sexualhealth/Pages/sexual-health-clinics.aspx" target="_blank">NSW Health Clinics</a></li>
+        </ul>
+      </p>
+    </section>
+
+    <section>
+      <h3>Alternative Services</h3>
+      <p>If penetrative sex isn’t safe or suitable for you, you can refuse and offer alternatives. Ideas here: <a href="https://qrco.de/bfzBcl" target="_blank">Service Alternatives</a>.</p>
+    </section>
+
+    <section>
+      <h3>Where to Go</h3>
+      <p>For free or low-cost safer sex supplies, vaccination, or STI/BBV testing:</p>
+      <ul>
+        <li>Call SWOP: (02) 9184 9466</li>
+        <li>Visit in-person: 7/110 Botany Road Alexandria NSW</li>
+        <li>Call NSW Sexual Health Infolink: 1800 451 624</li>
+        <li>More resources: <a href="https://redbook.scarletalliance.org.au/" target="_blank">Red Book</a></li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Scarlet Alliance. All rights reserved.
+  </footer>
+</body>
+</html>
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
